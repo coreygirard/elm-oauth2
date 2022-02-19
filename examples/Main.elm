@@ -6,6 +6,7 @@ import Browser.Navigation as Navigation exposing (Key)
 import Bytes exposing (Bytes)
 import Bytes.Encode as Bytes
 import Delay exposing (TimeUnit(..), after)
+import Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -288,7 +289,7 @@ gotRandomBytes model bytes =
     in
     ( { model | flow = Idle }
     , authorization
-        |> OAuth.makeAuthorizationUrl
+        |> OAuth.makeAuthorizationUrlWith OAuth.Token (Dict.fromList [ ( "prompt", "select_account" ) ])
         |> Url.toString
         |> Navigation.load
     )
