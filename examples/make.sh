@@ -1,1 +1,1 @@
-elm make --optimize --output=../../../dist/app.min.js *.elm
+elm make --optimize --output=static/scripts/app.min.js *.elm

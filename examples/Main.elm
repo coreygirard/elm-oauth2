@@ -54,7 +54,7 @@ configuration =
             (Json.field "name" Json.string)
             (Json.field "picture" Json.string)
     , clientId =
-        "909608474358-fkok86ks7e83c47aq01aiit47vsoh4s0.apps.googleusercontent.com"
+        "684454979787-u70a57pdqefuknb5umfj7gdj91v0vm3h.apps.googleusercontent.com"
     , scope =
         [ "profile" ]
     }
@@ -348,32 +348,22 @@ viewBody config model =
         case model.flow of
             Idle ->
                 div [ class "flex" ]
-                    [ viewAuthorizationStep False
-                    , viewStepSeparator False
-                    , viewGetUserInfoStep False
-                    ]
+                    []
                     :: viewIdle config
 
             Authorized _ ->
                 div [ class "flex" ]
-                    [ viewAuthorizationStep True
-                    , viewStepSeparator True
-                    , viewGetUserInfoStep False
-                    ]
+                    []
                     :: viewAuthorized
 
             Done userInfo ->
                 div [ class "flex" ]
-                    [ viewAuthorizationStep True
-                    , viewStepSeparator True
-                    , viewGetUserInfoStep True
-                    ]
+                    []
                     :: viewUserInfo config userInfo
 
             Errored err ->
                 div [ class "flex" ]
-                    [ viewErroredStep
-                    ]
+                    []
                     :: viewErrored err
     ]
 
