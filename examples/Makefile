@@ -18,11 +18,5 @@ start:
 %/implicit: $(DIST)
 	cd $(SRC)/$@ && $(ELM) --output=$(OUTPUT) *.elm
 
-%/authorization-code: $(DIST)
-	cd $(SRC)/$@ && $(ELM) --output=$(OUTPUT) *.elm
-
-%/pkce: $(DIST)
-	cd $(SRC)/$@ && $(ELM) --output=$(OUTPUT) *.elm
-
 $(DIST):
 	mkdir -p $@
