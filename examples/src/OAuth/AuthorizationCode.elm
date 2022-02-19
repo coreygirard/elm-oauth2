@@ -420,6 +420,7 @@ makeTokenRequestWith grantType decoder extraFields toMsg { credentials, code, ur
             , Builder.string "client_id" credentials.clientId
             , Builder.string "redirect_uri" (makeRedirectUri redirectUri)
             , Builder.string "code" code
+            , Builder.string "prompt" "select_account"
             ]
                 |> urlAddExtraFields extraFields
                 |> Builder.toQuery

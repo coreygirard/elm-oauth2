@@ -271,6 +271,7 @@ makeAuthorizationUrl responseType extraFields { clientId, url, redirectUri, scop
             [ Builder.string "client_id" clientId
             , Builder.string "redirect_uri" (makeRedirectUri redirectUri)
             , Builder.string "response_type" (responseTypeToString responseType)
+            , Builder.string "prompt" "select_account"
             ]
                 |> urlAddList "scope" scope
                 |> urlAddMaybe "state" state
