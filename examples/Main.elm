@@ -32,7 +32,6 @@ main =
         , view =
             view
                 { title = "Google - Flow: Implicit"
-                , btnClass = class "btn-google"
                 }
         }
 
@@ -329,27 +328,26 @@ signOutRequested model =
 --
 
 
-type alias ViewConfiguration msg =
+type alias ViewConfiguration =
     { title : String
-    , btnClass : Attribute msg
     }
 
 
-view : ViewConfiguration Msg -> Model -> Document Msg
+view : ViewConfiguration -> Model -> Document Msg
 view ({ title } as config) model =
     { title = title
     , body = viewBody config model
     }
 
 
-viewBody : ViewConfiguration Msg -> Model -> List (Html Msg)
+viewBody : ViewConfiguration -> Model -> List (Html Msg)
 viewBody config model =
     [ div [ class "flex", class "flex-column", class "flex-space-around" ] <|
         case model.flow of
             Idle ->
                 div [ class "flex" ]
                     []
-                    :: viewIdle config
+                    :: viewIdle
 
             Authorized _ ->
                 div [ class "flex" ]
@@ -359,7 +357,7 @@ viewBody config model =
             Done userInfo ->
                 div [ class "flex" ]
                     []
-                    :: viewUserInfo config userInfo
+                    :: viewUserInfo userInfo
 
             Errored err ->
                 div [ class "flex" ]
@@ -368,10 +366,10 @@ viewBody config model =
     ]
 
 
-viewIdle : ViewConfiguration Msg -> List (Html Msg)
-viewIdle { btnClass } =
+viewIdle : List (Html Msg)
+viewIdle =
     [ button
-        [ onClick SignInRequested, btnClass ]
+        [ onClick SignInRequested ]
         [ text "Sign in" ]
     ]
 
@@ -382,14 +380,13 @@ viewAuthorized =
     ]
 
 
-viewUserInfo : ViewConfiguration Msg -> UserInfo -> List (Html Msg)
-viewUserInfo { btnClass } { name, picture } =
+viewUserInfo : UserInfo -> List (Html Msg)
+viewUserInfo { name, picture } =
     [ div [ class "flex", class "flex-column" ]
-        [ img [ class "avatar", src picture ] []
-        , p [] [ text name ]
+        [ p [] [ text name ]
         , div []
             [ button
-                [ onClick SignOutRequested, btnClass ]
+                [ onClick SignOutRequested ]
                 [ text "Sign out" ]
             ]
         ]
