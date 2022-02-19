@@ -174,7 +174,7 @@ init mflags origin navigationKey =
                         , Cmd.batch
                             -- Artificial delay to make the live demo easier to follow.
                             -- In practice, the access token could be requested right here.
-                            [ after 750 Millisecond UserInfoRequested
+                            [ after 5 Millisecond UserInfoRequested
                             , clearUrl
                             ]
                         )
